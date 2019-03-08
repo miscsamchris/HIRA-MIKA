@@ -61,10 +61,12 @@ def dataentry(bedno,name,age,sex,diag,lam,lan,tn="liveEntry"):
         cur.execute(qry, (int(bedno),name,int(age),sex,diag,lam,lan))
         conn.commit()
         print ("one record added successfully")
+        conn.close()
         return True
     except:
         print("error in operation")
         conn.rollback()
+        conn.close()
         return False
 def dataupdate(bedno,name,age,sex,diag,lam,lan,tn="bedinfo"):
     conn = sqlite3.connect("database.db")
@@ -77,10 +79,12 @@ def dataupdate(bedno,name,age,sex,diag,lam,lan,tn="bedinfo"):
             cur.execute(qry, (name,int(age),sex,diag,lam,lan,int(bedno)))
             conn.commit()
             print ("one record Edited successfully")
+            conn.close()
             return True
         except Error as e:
             print(e)
             conn.rollback()
+            conn.close()
             return False
 @app.route('/')
 def hello():
