@@ -14,13 +14,24 @@ from sqlite3 import Error
 def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
+        create_table(db_file)
     except Error as e:
         print(e)
     finally:
         conn.close()
- def create_table():
-    try:
+def create_table(db_file):
+    try:        
         conn = sqlite3.connect(db_file)
+        cur =conn.cursor()
+        cur.execute('''CREATE TABLE histbiodata (
+    BEDNUMBER INTEGER,
+    name TEXT,
+    BP INTEGER, TEMP INTEGER, HEART INTEGER);''')
+        cur.execute('''CREATE TABLE LastuserDataabse (
+    BEDNUMBER INTEGER,
+    name TEXT,
+    BP INTEGER, TEMP INTEGER, HEART INTEGER);''')
+
     except Error as e:
         print(e)
     finally:
