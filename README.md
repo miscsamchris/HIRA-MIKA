@@ -15,3 +15,4 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] PPT Template Preparation
  
 ### End of Day one of CodieCon. Siesta Time
+![HIRA MIKA, The Common Beautiful Flower](https://media1.tenor.com/images/c8831e6d64bf221a54a2aafef367248d/tenor.gif?itemid=8925673)
