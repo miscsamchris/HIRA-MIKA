@@ -7,7 +7,7 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] Server setup
  - [X] Database setup
  - [X] Database Entry from Server
- - [ ] Hardware coding
+ - [X] Hardware coding
  - [ ] Digitalisation Application
  - [X] Artwork
  - [X] PPT Template Preparation
