@@ -68,17 +68,20 @@ def dataentry(bedno,name,age,sex,diag,lam,lan,tn="liveEntry"):
         return False
 def dataupdate(bedno,name,age,sex,diag,lam,lan,tn="bedinfo"):
     conn = sqlite3.connect("database.db")
-    qry="update "+tn+" set NAME=?,AGE=?,SEX=?,DIAGNOSIS=?,LAM=?,LAN=? where BEDNUMBER=?;"
-    try:
-        cur=conn.cursor()
-        cur.execute(qry, (name,int(age),sex,diag,lam,lan,int(bedno)))
-        conn.commit()
-        print ("one record Edited successfully")
+    if dataentry(bedno,name,age,sex,diag,lam,lan,tn)==True:
         return True
-    except:
-        print("error in operation")
-        conn.rollback()
-        return dataentry(bedno,name,age,sex,diag,lam,lan,tn) 
+    else:
+        qry="update "+tn+" set NAME=?,AGE=?,SEX=?,DIAGNOSIS=?,LAM=?,LAN=? where BEDNUMBER=?;"
+        try:
+            cur=conn.cursor()
+            cur.execute(qry, (name,int(age),sex,diag,lam,lan,int(bedno)))
+            conn.commit()
+            print ("one record Edited successfully")
+            return True
+        except Error as e:
+            print(e)
+            conn.rollback()
+            return False
 @app.route('/')
 def hello():
     return "Hello World!"
