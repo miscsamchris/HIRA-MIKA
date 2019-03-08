@@ -57,5 +57,18 @@ void loop() {
   }
 
   // publish a message roughly every second.
+  if (millis() - lastMillis > 1000) {
+        static double oldValue = 0;
+    static double oldChange = 0;
+ 
+    int rawValue = analogRead (sensorPin);
+    double value = alpha * oldValue + (1 - alpha) * rawValue;
+ 
+   Serial.println (value);
+    oldValue = value;
+ 
+    lastMillis = millis();
+    client.publish("heart",String((value),2));
 
+  }
 }
