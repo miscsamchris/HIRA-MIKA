@@ -25,8 +25,12 @@ public class MQTTIntegrater : MonoBehaviour {
         string clientId = Guid.NewGuid().ToString();
         client.Connect(clientId);
 
-        // subscribe to the topic "/home/temperature" with QoS 2 
-        client.Subscribe(new string[] { "heart" ,"bp","temp","data/"+a.name}, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        // subscribe to the topic "/home/temperature" with QoS 2 ,"bp","temp","data/"+a.name
+        client.Subscribe(new string[] { "heart" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        client.Subscribe(new string[] { "bp" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        client.Subscribe(new string[] { "temp" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        client.Subscribe(new string[] { "data/" + a.name }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+
     }
     void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
     {
