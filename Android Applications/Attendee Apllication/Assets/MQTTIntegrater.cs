@@ -7,6 +7,8 @@ using uPLibrary.Networking.M2Mqtt.Utility;
 using System.Net;
 using uPLibrary.Networking.M2Mqtt.Exceptions;
 using System;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class MQTTIntegrater : MonoBehaviour {
 
@@ -45,6 +47,7 @@ public class MQTTIntegrater : MonoBehaviour {
         if (e.Topic == "temp")
         {
             T = System.Text.Encoding.UTF8.GetString(e.Message);
+            StartCoroutine(Upload());
         }
         if (e.Topic == "data/" + a.name)
         {
@@ -56,6 +59,7 @@ public class MQTTIntegrater : MonoBehaviour {
             DIN = arr[3];
             LAMIN = arr[4];
             LANIN = arr[5];
+            StartCoroutine(Upload());
         }
     }
     // Update is called once per frame
@@ -71,4 +75,22 @@ public class MQTTIntegrater : MonoBehaviour {
         lam.text = LAMIN;
         lan.text = LANIN;
 	}
+    IEnumerator Upload()
+    {
+
+        WWWForm form = new WWWForm();
+        form.AddField("name", NIN);
+        form.AddField("bedno", BIN);
+        form.AddField("age", AIN);
+        form.AddField("sex", SIN);
+        form.AddField("diag", DIN);
+        form.AddField("lam", LAMIN);
+        form.AddField("lan", LANIN);
+        form.AddField("bp", BP);
+        form.AddField("hb", heartbeat);
+        form.AddField("temp", T);
+        UnityWebRequest www = UnityWebRequest.Post("http://10.177.7.168:5000/upload-integrated/", form);
+        yield return www.SendWebRequest();
+
+    }
 }
