@@ -1,0 +1,42 @@
+# Written by MakeHuman 1.1.1
+version v1.1.1
+tags Virtual Chatbot
+camera 0.0 0.0 0.152586817138 0.594331848787 0.248821138925 1.225
+modifier breast/breast-trans-down|up 0.034000
+modifier macrodetails-universal/Muscle 0.524000
+modifier macrodetails/African 0.000000
+modifier macrodetails-proportions/BodyProportions 0.680000
+modifier breast/nipple-point-decr|incr 0.184000
+modifier macrodetails/Gender 0.000000
+modifier head/head-angle-in|out 0.306000
+modifier macrodetails-height/Height 0.626000
+modifier breast/BreastSize 0.639000
+modifier head/head-invertedtriangular 0.320000
+modifier macrodetails/Age 0.476000
+modifier breast/BreastFirmness 0.517000
+modifier macrodetails/Asian 0.000000
+modifier breast/breast-point-decr|incr -0.510000
+modifier head/head-fat-decr|incr -0.414000
+modifier head/head-diamond 0.252000
+modifier head/head-age-decr|incr -0.346000
+modifier macrodetails/Caucasian 1.000000
+modifier breast/nipple-size-decr|incr 0.346000
+modifier armslegs/r-hand-fingers-distance-decr|incr 0.116000
+modifier head/head-back-scale-depth-decr|incr 0.292000
+modifier macrodetails-universal/Weight 0.252000
+modifier breast/breast-volume-vert-down|up -0.020000
+tongue tongue01 52ad91a3-caad-4e50-8c38-67634e5e789c
+teeth Teeth_Shape01 784ee1fc-0362-42b6-8f13-c36294bb4bd3
+hair ponytail01 44e0340e-c7a6-4d22-814c-0632968d2dde
+eyelashes eyelashes03 a311babf-a7fb-4d65-a1fc-94ab99fe520f
+skeleton game_engine.mhskel
+eyebrows eyebrow001 9c81ec3a-faa5-4c94-9cdb-992300ba3084
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+pose tpose.bvh
+clothes female_casualsuit01 a8b0e841-144b-4f03-8b9e-ea8fdce8c863
+clothesHideFaces True
+expression smile02.mhpose
+skinMaterial skins/middleage_caucasian_female/middleage_caucasian_female.mhmat
+material ponytail01 44e0340e-c7a6-4d22-814c-0632968d2dde ponytail01.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brown.mhmat
+subdivide False
