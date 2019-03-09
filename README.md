@@ -20,7 +20,7 @@ The main objective of the project is to provide a digital record of the medicati
 ### Progress for the day 09/03/2019 (Till Completion)
  - [X] Digitalisation Application
  - [ ] 3D Model Search
- - [ ] MQTT Setup
+ - [X] MQTT Setup
  - [ ] Animation of the Heart
  - [ ] Augmented Reality Application for Attendees
  - [ ] Augmented Reality Application for Kin
