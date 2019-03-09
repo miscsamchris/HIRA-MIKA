@@ -107,7 +107,7 @@ def getdata():
         bedno = request.args.get('bedno')
         lam = request.args.get('lam')
         lan = request.args.get('lan')
-    if userentry({"bedno":bedno,"name":name,"age":age,"sex":sex,"diag":diag,"lam":lam,"lan":lan},"A"):
+    if userentry({"bedno":bedno,"name":name,"age":age,"sex":sex,"diag":diag,"lam":lam,"lan":lan}):
         return "Data entry done"
     else:
         return "Data entry Not done"

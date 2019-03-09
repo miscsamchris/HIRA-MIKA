@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TouchFinder : MonoBehaviour {
     public Text t;
 	void Start () {
-        t.text= PlayerPrefs.GetString("BED", "001"); 
+        t.text= PlayerPrefs.GetString("bedno", "001"); 
     }
 
     void Update()
