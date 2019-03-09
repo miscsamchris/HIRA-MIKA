@@ -9,7 +9,7 @@ public class LoadingScreen : MonoBehaviour
     public Transform LoadingBar;
     public Image screen;
     [SerializeField] private float currentAmount = 0;
-    [SerializeField] private float speed = 4.0f;
+    [SerializeField] private float speed = 14.0f;
     void Update()
     {
         if (currentAmount < 100)
