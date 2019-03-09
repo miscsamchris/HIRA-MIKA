@@ -5,7 +5,7 @@ Created on Fri Mar  8 21:51:26 2019
 @author: TLSWM
 """
 
-from flask import Flask,request,redirect
+from flask import Flask,request,redirect,jsonify
 app = Flask(__name__)
 import sqlite3
 from sqlite3 import Error
@@ -181,6 +181,20 @@ def getentiredata():
     else:
         recordentry({"bedno":bedno,"name":name,"age":age,"sex":sex,"diag":diag,"lam":lam,"lan":lan,"bp":bp,"hb":hb,"temp":temp},"A")
         return "Data entry Not done"
+@app.route('/getinfoonbed/<string:bedno>/')
+def dbinfo(bedno):
+    db=sqlite3.connect('database.db')
+    sql="SELECT * from integrated where BEDNUMBER ="+bedno+" ;"
+    cur=db.cursor()
+    cur.execute(sql)
+    records=[]
+    while True:
+        record=cur.fetchone()
+        if record==None:
+            break
+        records=record
+    db.close()
+    return jsonify(dict(zip(["bedno","name","age","sex","diag","lam","lan","bp","hb","temp"],records)))    
 if __name__ == '__main__':
     create_connection("database.db")
     app.run(debug=True, host='10.177.7.168', port="5000")
