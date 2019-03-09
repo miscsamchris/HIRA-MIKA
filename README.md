@@ -26,8 +26,8 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] Hardware Integration
  - [ ] Augmented Reality Application for Kin
 	 - [ ] Chatbot Creation
-	 - [ ] REST API Setup
-	 - [ ] Web Scraper Setup
+	 - [X] REST API Setup
+	 - [X] Web Scraper Setup
 	 - [ ] Video Streaming Setup
 	 - [ ] Presentation Updation
  - [ ] ML / Analytics ????????
