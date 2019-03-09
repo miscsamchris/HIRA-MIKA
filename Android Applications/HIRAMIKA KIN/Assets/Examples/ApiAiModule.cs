@@ -80,7 +80,28 @@ public class ApiAiModule : MonoBehaviour
             {
                 var outText = aiResponse.Result.Fulfillment.Speech;
 
-                t.SpeakOut(outText);
+                if (outText.Substring(0, outText.IndexOf(" ")) == "MED")
+                {
+                    string topic = outText.Substring(outText.IndexOf(" ") + 1);
+                    WWW req = new WWW("http://10.177.7.168:5000/medicineinfo/" + topic + "/");
+                    StartCoroutine(request(req));
+                }
+                if (outText.Substring(0, outText.IndexOf(" ")) == "BEDINFO")
+                {
+                    string topic = outText.Substring(outText.IndexOf(" ") + 1);
+                    WWW req = new WWW("http://10.177.7.168:5000/getinfoonbed/" + topic + "/");
+                    StartCoroutine(request(req));
+                }
+                if (outText.Substring(0, outText.IndexOf(" ")) == "DISEASE")
+                {
+                    string topic = outText.Substring(outText.IndexOf(" ") + 1);
+                    WWW req = new WWW("http://10.177.7.168:5000/diseaseinfo/" + topic + "/");
+                    StartCoroutine(request(req));
+                }
+                else
+                {
+                    t.SpeakOut(outText);
+                }
 
             }
             else
@@ -89,7 +110,19 @@ public class ApiAiModule : MonoBehaviour
             }
         });
     }
-
+    public IEnumerator request(WWW req)
+    {
+        yield return req;
+        if (req.text.Length >= 3)
+        {
+            t.SpeakOut(req.text);
+        }
+    }
+    public IEnumerator request2(WWW req)
+    {
+        yield return req;
+        t.SpeakOut(req.text);
+    }
     void HandleOnError(object sender, AIErrorEventArgs e)
     {
         RunInMainThread(() => {

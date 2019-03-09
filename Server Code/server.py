@@ -151,6 +151,7 @@ def getdata():
         lan = request.args.get('lan')
     if userentry({"bedno":bedno,"name":name,"age":age,"sex":sex,"diag":diag,"lam":lam,"lan":lan}):
         userentry({"bedno":bedno,"name":name,"age":age,"sex":sex,"diag":diag,"lam":lam,"lan":lan},"A")
+        recordentry({"bedno":bedno,"name":name,"age":age,"sex":sex,"diag":diag,"lam":lam,"lan":lan,"bp":"120","hb":"65","temp":"96.8"},"A")
         return "Data entry done"
     else:
         return "Data entry Not done"
@@ -196,7 +197,7 @@ def dbinfo(bedno):
             break
         records=record
     db.close()
-    return jsonify(dict(zip(["bedno","name","age","sex","diag","lam","lan","bp","hb","temp"],records)))    
+    return "\n".join(["The "+str(x)+ " is "+str(y)+"." for (x,y) in zip(["bed Number","name","age","sex","diagnosis","last given medicine","last attended nurse","blood pressure","heart beat","temperature"],records)])    
 @app.route('/diseaseinfo/<string:topic>/')
 def scraperdisease(topic):
     link="https://www.google.co.in/search?q="
@@ -206,7 +207,7 @@ def scraperdisease(topic):
     s=bs.find_all("div")
     nbs=BeautifulSoup(str(s[22]),"html.parser")
     s=nbs.find_all("div")
-    return str(s[10])
+    return str(s[10].getText())
 @app.route('/medicineinfo/<string:topic>/')
 def scrapermed(topic):
     topic=topic.split(" ")
