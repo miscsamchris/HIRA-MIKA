@@ -34,14 +34,12 @@ using System.Collections.Generic;
 public class ApiAiModule : MonoBehaviour
 {
 
-    public Text answerTextField;
-    public Text inputTextField;
     private ApiAiUnity apiAiUnity;
     private AudioSource aud;
-    public AudioClip listeningSound;
+    private TextToSpeechDemo t;
 
     private readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings
-    { 
+    {
         NullValueHandling = NullValueHandling.Ignore,
     };
 
@@ -61,8 +59,8 @@ public class ApiAiModule : MonoBehaviour
         {
             return true;
         };
-            
-        const string ACCESS_TOKEN = "3485a96fb27744db83e78b8c4bc9e7b7";
+
+        const string ACCESS_TOKEN = "8e3029a852104849810c75a351d57cf7  ";
 
         var config = new AIConfiguration(ACCESS_TOKEN, SupportedLanguage.English);
 
@@ -71,6 +69,7 @@ public class ApiAiModule : MonoBehaviour
 
         apiAiUnity.OnError += HandleOnError;
         apiAiUnity.OnResult += HandleOnResult;
+        t = transform.GetComponent<TextToSpeechDemo>();
     }
 
     void HandleOnResult(object sender, AIResponseEventArgs e)
@@ -80,28 +79,26 @@ public class ApiAiModule : MonoBehaviour
             if (aiResponse != null)
             {
                 Debug.Log(aiResponse.Result.ResolvedQuery);
-                var outText = JsonConvert.SerializeObject(aiResponse, jsonSettings);
-                
+                var outText = aiResponse.Result.Fulfillment.Speech;
                 Debug.Log(outText);
-                
-                answerTextField.text = outText;
-                
-            } else
+                t.SpeakOut(outText);
+
+            }
+            else
             {
                 Debug.LogError("Response is null");
             }
         });
     }
-    
+
     void HandleOnError(object sender, AIErrorEventArgs e)
     {
         RunInMainThread(() => {
             Debug.LogException(e.Exception);
             Debug.Log(e.ToString());
-            answerTextField.text = e.Exception.Message;
         });
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -124,48 +121,41 @@ public class ApiAiModule : MonoBehaviour
 
     public void PluginInit()
     {
-        
+
     }
-    
+
     public void StartListening()
     {
         Debug.Log("StartListening");
-            
-        if (answerTextField != null)
-        {
-            answerTextField.text = "Listening...";
-        }
-            
+
+
+
         aud = GetComponent<AudioSource>();
         apiAiUnity.StartListening(aud);
 
     }
-    
+
     public void StopListening()
     {
         try
         {
             Debug.Log("StopListening");
 
-            if (answerTextField != null)
-            {
-                answerTextField.text = "";
-            }
-            
+
             apiAiUnity.StopListening();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Debug.LogException(ex);
         }
     }
-    
+
     public void SendText()
     {
-        var text = inputTextField.text;
 
-        Debug.Log(text);
+        Debug.Log("");
 
-        AIResponse response = apiAiUnity.TextRequest(text);
+        AIResponse response = apiAiUnity.TextRequest("");
 
         if (response != null)
         {
@@ -174,8 +164,8 @@ public class ApiAiModule : MonoBehaviour
 
             Debug.Log("Result: " + outText);
 
-            answerTextField.text = outText;
-        } else
+        }
+        else
         {
             Debug.LogError("Response is null");
         }
@@ -186,8 +176,11 @@ public class ApiAiModule : MonoBehaviour
     {
         try
         {
+            t.utilsPlugin.UnMuteBeep();
+            t.Stop();
             apiAiUnity.StartNativeRecognition();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Debug.LogException(ex);
         }
