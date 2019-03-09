@@ -15,5 +15,21 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] PPT Template Preparation
  
 ### End of Day one of CodieCon. Siesta Time
-![HIRA MIKA, The Common Beautiful Flower](https://media1.tenor.com/images/c8831e6d64bf221a54a2aafef367248d/tenor.gif?itemid=8925673)
-	
+![Good Night](https://media1.tenor.com/images/c8831e6d64bf221a54a2aafef367248d/tenor.gif?itemid=8925673 "Good Night")
+#### Woke and Active
+![Up and at em](https://media1.tenor.com/images/6ae1c49e69cfc8d6eb2d105aa9a5b8ed/tenor.gif?itemid=4184916 "RIP Stephen Hillenberg")
+### Progress for the day 09/03/2019 (Till Completion)
+ - [ ] Digitalisation Application
+ - [ ] 3D Model Search
+ - [ ] MQTT Setup
+ - [ ] Animation of the Heart
+ - [ ] Augmented Reality Application for Attendees
+ - [ ] Augmented Reality Application for Kin
+ - [ ] Chatbot Creation
+ - [ ] REST API Setup
+ - [ ] Web Scraper Setup
+ - [ ] Video Streaming Setup
+ - [ ] Presentation Updation
+ - [ ] ML ????????
+
+
