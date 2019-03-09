@@ -19,7 +19,7 @@ The main objective of the project is to provide a digital record of the medicati
 ![Up and at em](https://media1.tenor.com/images/6ae1c49e69cfc8d6eb2d105aa9a5b8ed/tenor.gif?itemid=4184916 "RIP Stephen Hillenberg")
 ### Progress for the day 09/03/2019 (Till Completion)
  - [X] Digitalisation Application
- - [ ] 3D Model Search
+ - [X] 3D Model Search
  - [X] MQTT Setup
  - [ ] Animation of the Heart
  - [ ] Augmented Reality Application for Attendees
