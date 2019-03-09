@@ -57,7 +57,7 @@ void loop() {
   }
 
   // publish a message roughly every second.
-  if (millis() - lastMillis > 1000) {
+  if (millis() - lastMillis > 3000) {
         static double oldValue = 0;
     static double oldChange = 0;
  
@@ -69,6 +69,11 @@ void loop() {
  
     lastMillis = millis();
     client.publish("heart",String((value),2));
+    long c=random(80,100);
+        client.publish("temp",String(c));
+        c=random(100,140);
+    client.publish("bp",String(c));
+
 
   }
 }

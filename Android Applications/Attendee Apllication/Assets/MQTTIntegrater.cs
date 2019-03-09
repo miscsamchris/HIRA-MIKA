@@ -10,9 +10,10 @@ using System;
 
 public class MQTTIntegrater : MonoBehaviour {
 
-    public TMPro.TMP_Text t;
+    public TMPro.TMP_Text hb,bp,t,name,bedno,age,sex,diag,lam,lan;
     private MqttClient client;
-    public string heartbeat="65";
+    public GameObject a;
+    private string heartbeat="65",BP="120",T="98.2",BIN="",NIN = "", AIN = "", SIN = "", DIN = "", LAMIN = "", LANIN = "";
 
     // Use this for initialization
     void Start () {
@@ -25,7 +26,7 @@ public class MQTTIntegrater : MonoBehaviour {
         client.Connect(clientId);
 
         // subscribe to the topic "/home/temperature" with QoS 2 
-        client.Subscribe(new string[] { "heart" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+        client.Subscribe(new string[] { "heart" ,"bp","temp","data/"+a.name}, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
     }
     void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
     {
@@ -33,9 +34,37 @@ public class MQTTIntegrater : MonoBehaviour {
         {
             heartbeat = System.Text.Encoding.UTF8.GetString(e.Message);
         }
+        if (e.Topic == "bp")
+        {
+            BP = System.Text.Encoding.UTF8.GetString(e.Message);
+        }
+        if (e.Topic == "temp")
+        {
+            T = System.Text.Encoding.UTF8.GetString(e.Message);
+        }
+        if (e.Topic == "data/" + a.name)
+        {
+            string[] arr = System.Text.Encoding.UTF8.GetString(e.Message).Split('|');
+            BIN = a.name;
+            NIN = arr[0];
+            AIN = arr[1];
+            SIN = arr[2];
+            DIN = arr[3];
+            LAMIN = arr[4];
+            LANIN = arr[5];
+        }
     }
     // Update is called once per frame
     void Update () {
-        t.text = heartbeat;
+        hb.text = heartbeat;
+        bp.text = BP;
+        t.text = T;
+        bedno.text = BIN;
+        name.text = NIN;
+        age.text = AIN;
+        sex.text = SIN;
+        diag.text = DIN;
+        lam.text = LAMIN;
+        lan.text = LANIN;
 	}
 }

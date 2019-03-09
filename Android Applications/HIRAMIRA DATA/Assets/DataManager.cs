@@ -4,9 +4,15 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Net;
+using uPLibrary.Networking.M2Mqtt;
+using uPLibrary.Networking.M2Mqtt.Messages;
+using uPLibrary.Networking.M2Mqtt.Utility;
+using uPLibrary.Networking.M2Mqtt.Exceptions;
+using System;
 
 public class DataManager : MonoBehaviour {
-
+    private MqttClient client;
     public InputField name, bedno, age, sex, diag, lam, lan;
     void Start () {
         name.text = PlayerPrefs.GetString("name", "");
@@ -16,6 +22,10 @@ public class DataManager : MonoBehaviour {
         diag.text = PlayerPrefs.GetString("diag", "");
         lam.text = PlayerPrefs.GetString("lam", "");
         lan.text = PlayerPrefs.GetString("lan", "");
+        client = new MqttClient(IPAddress.Parse("10.177.7.168"), 1883, false, null);
+        string clientId = Guid.NewGuid().ToString();
+        client.Connect(clientId);
+
     }
     public void submit()
     {
@@ -48,6 +58,7 @@ public class DataManager : MonoBehaviour {
         }
         else
         {
+            client.Publish("data/"+bedno.text, System.Text.Encoding.UTF8.GetBytes(name.text+" | "+age.text + " | " +sex.text + " | " +diag.text + " | " +lam.text + " | " +lan.text), MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, true);
             SceneManager.LoadScene("ARscene");
         }
     }
