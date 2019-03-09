@@ -11,6 +11,7 @@ import sqlite3
 from sqlite3 import Error
 from bs4 import BeautifulSoup
 import requests
+import re
  
 def create_connection(db_file):
     try:
@@ -42,7 +43,7 @@ def create_table(db_file):
         try:
             cur.execute('''CREATE TABLE bedinfo (
     BEDNUMBER INTEGER PRIMARY KEY,
-    NAME TEXT,
+         TEXT,
     AGE INTEGER, SEX TEXT, DIAGNOSIS TEXT,LAM TEXT,LAN TEXT);''')
         except Error as e:
             print(e)
@@ -206,6 +207,26 @@ def scraperdisease(topic):
     nbs=BeautifulSoup(str(s[22]),"html.parser")
     s=nbs.find_all("div")
     return str(s[10])
+@app.route('/medicineinfo/<string:topic>/')
+def scrapermed(topic):
+    topic=topic.split(" ")
+    for i in topic:
+        if i not in ["of","at","from","to"]:
+            i=i.capitalize()
+        else:
+            i=i
+    topic="_".join(topic)
+    link="https://en.wikipedia.org/wiki/"
+    link+=topic
+    request=requests.get(link)
+    bs=BeautifulSoup(request.content,"html.parser")
+    s=bs.find_all("p")
+    string=" "
+    for i in s:
+        if len(string)<300:
+            string+=i.getText()
+    string=re.sub(r"\[[0-9]*\]"," ",string)
+    return string
 if __name__ == '__main__':
     create_connection("database.db")
     app.run(debug=True, host='10.177.7.168', port="5000")
