@@ -8,29 +8,29 @@ public class TextToSpeechDemo : MonoBehaviour
 {
 
     private const string TAG = "[TextToSpeechDemo]: ";
+    // EDITED EXAMPLE SCRIPT
+    //public InputField inputField;
 
-    public InputField inputField;
+    //public Text statusText;
+    //public Text ttsDataActivityStatusText;
+    //public Text localeText;
+    //public Slider localeSlider;
 
-    public Text statusText;
-    public Text ttsDataActivityStatusText;
-    public Text localeText;
-    public Slider localeSlider;
+    //public Text pitchText;
+    //public Slider pitchSlider;
 
-    public Text pitchText;
-    public Slider pitchSlider;
+    //public Text speechRateText;
+    //public Slider speechRateSlider;
 
-    public Text speechRateText;
-    public Slider speechRateSlider;
-
-    public Text volumeText;
-    public Slider volumeSlider;
+    //public Text volumeText;
+    //public Slider volumeSlider;
 
     private SpeechPlugin speechPlugin;
     private TextToSpeechPlugin textToSpeechPlugin;
     private float waitingInterval = 2f;
 
     private Dispatcher dispatcher;
-    private UtilsPlugin utilsPlugin;
+    public UtilsPlugin utilsPlugin;
 
     private void Awake()
     {
@@ -41,11 +41,11 @@ public class TextToSpeechDemo : MonoBehaviour
 
         speechPlugin = SpeechPlugin.GetInstance();
         speechPlugin.SetDebug(0);
-		
+
         textToSpeechPlugin = TextToSpeechPlugin.GetInstance();
         textToSpeechPlugin.SetDebug(0);
         textToSpeechPlugin.Initialize();
-		
+
         textToSpeechPlugin.OnInit += OnInit;
         textToSpeechPlugin.OnChangeLocale += OnSetLocale;
         textToSpeechPlugin.OnStartSpeech += OnStartSpeech;
@@ -56,7 +56,7 @@ public class TextToSpeechDemo : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        CheckTTSDataActivity();
+        //CheckTTSDataActivity();
         UpdateSettingsValue();
     }
 
@@ -87,78 +87,79 @@ public class TextToSpeechDemo : MonoBehaviour
         UpdateVolumeSetting();
     }
 
-    private void WaitingMode()
-    {
-        UpdateStatus("Waiting...");
-    }
+    //private void WaitingMode()
+    //{
+    //    UpdateStatus("Waiting...");
+    //}
 
-    private void UpdateStatus(string status)
-    {
-        if (statusText != null)
-        {
-            statusText.text = String.Format("Status: {0}", status);	
-        }
-    }
+    //private void UpdateStatus(string status)
+    //{
+    //    if (statusText != null)
+    //    {
+    //        statusText.text = String.Format("Status: {0}", status);	
+    //    }
+    //}
 
-    private void UpdateTTSDataActivityStatus(string status)
-    {
-        if (ttsDataActivityStatusText != null)
-        {
-            ttsDataActivityStatusText.text = String.Format("TTS Data Activity Status: {0}", status);
-        }
-    }
+    //private void UpdateTTSDataActivityStatus(string status)
+    //{
+    //    if (ttsDataActivityStatusText != null)
+    //    {
+    //        ttsDataActivityStatusText.text = String.Format("TTS Data Activity Status: {0}", status);
+    //    }
+    //}
 
     private void UpdateLocale(SpeechLocale locale)
     {
-        if (localeText != null)
-        {
-            localeText.text = String.Format("Locale: {0}", locale);
-            textToSpeechPlugin.SetLocale(locale);
-        }
+        //if (localeText != null)
+        //{
+        //localeText.text = String.Format("Locale: {0}", locale);
+        textToSpeechPlugin.SetLocale(locale);
+        //}
     }
 
     private void UpdatePitch(float pitch)
     {
-        if (pitchText != null)
-        {
-            pitchText.text = String.Format("Pitch: {0}", pitch);
-            textToSpeechPlugin.SetPitch(pitch);
-        }
+        //if (pitchText != null)
+        //{
+        //    pitchText.text = String.Format("Pitch: {0}", pitch);
+        textToSpeechPlugin.SetPitch(pitch);
+        //}
     }
 
     private void UpdateSpeechRate(float speechRate)
     {
-        if (speechRateText != null)
-        {
-            speechRateText.text = String.Format("Speech Rate: {0}", speechRate);
-            textToSpeechPlugin.SetSpeechRate(speechRate);
-        }
+        //if (speechRateText != null)
+        //{
+        //    speechRateText.text = String.Format("Speech Rate: {0}", speechRate);
+        textToSpeechPlugin.SetSpeechRate(speechRate);
+        //}
     }
 
     private void UpdateVolume(int volume)
     {
-        if (volumeText != null)
-        {
-            volumeText.text = String.Format("Volume: {0}", volume);
-            utilsPlugin.IncreaseMusicVolumeByValue(volume);
-        }
+        //if (volumeText != null)
+        //{
+        //    volumeText.text = String.Format("Volume: {0}", volume);
+        utilsPlugin.IncreaseMusicVolumeByValue(volume);
+        //}
     }
 
-    public void SpeakOut()
+    public void SpeakOut(string s)
     {
-        if (inputField != null)
+        if (s != null)
         {
-            string whatToSay = inputField.text;
+            string whatToSay = s;
             string utteranceId = "test-utteranceId";
 
             if (textToSpeechPlugin.isInitialized())
             {
                 // un mute volume
                 utilsPlugin.UnMuteBeep();
-                
-                UpdateStatus("Trying to speak...");
+
+                Debug.Log(s + " From Sppeakout");
+                //UpdateStatus("Trying to speak...");
                 Debug.Log(TAG + "SpeakOut whatToSay: " + whatToSay + " utteranceId " + utteranceId);
-                textToSpeechPlugin.SpeakOut(whatToSay, utteranceId);	
+                textToSpeechPlugin.SpeakOut(whatToSay, utteranceId);
             }
         }
     }
@@ -179,17 +180,17 @@ public class TextToSpeechDemo : MonoBehaviour
 
     private void CheckTTSDataActivity()
     {
-        if (textToSpeechPlugin != null)
-        {
-            if (textToSpeechPlugin.CheckTTSDataActivity())
-            {
-                UpdateTTSDataActivityStatus("Available");
-            }
-            else
-            {
-                UpdateTTSDataActivityStatus("Not Available");
-            }
-        }
+        //if (textToSpeechPlugin != null)
+        //{
+        //    if (textToSpeechPlugin.CheckTTSDataActivity())
+        //    {
+        //        UpdateTTSDataActivityStatus("Available");
+        //    }
+        //    else
+        //    {
+        //        UpdateTTSDataActivityStatus("Not Available");
+        //    }
+        //}
     }
 
     public void SpeakUsingAvailableLocaleOnDevice()
@@ -197,19 +198,19 @@ public class TextToSpeechDemo : MonoBehaviour
 
         //on this example we will use spain locale
         TTSLocaleCountry ttsLocaleCountry = TTSLocaleCountry.SPAIN;
-		
+
         //check if available
         bool isLanguageAvailanble = textToSpeechPlugin.CheckLocale(ttsLocaleCountry);
-		
+
         if (isLanguageAvailanble)
         {
             string countryISO2Alpha = textToSpeechPlugin.GetCountryISO2Alpha(ttsLocaleCountry);
-			
+
             //set spain language
             textToSpeechPlugin.SetLocaleByCountry(countryISO2Alpha);
             Debug.Log(TAG + "locale set," + ttsLocaleCountry.ToString() + "locale is available");
 
-            SpeakOut();
+            SpeakOut("Hello world");
         }
         else
         {
@@ -231,20 +232,20 @@ public class TextToSpeechDemo : MonoBehaviour
 
     private void UpdateSpeechLocaleSetting()
     {
-        if (localeSlider != null)
-        {
-            SpeechLocale locale = (SpeechLocale)localeSlider.value;
-            UpdateLocale(locale);
-        }
+        //if (localeSlider != null)
+        //{
+        SpeechLocale locale = (SpeechLocale)0;
+        UpdateLocale(locale);
+        //}
     }
 
     private void UpdatePitchSetting()
     {
-        if (pitchSlider != null)
-        {
-            float pitch = pitchSlider.value;
-            UpdatePitch(pitch);
-        }
+        //if (pitchSlider != null)
+        //{
+        float pitch = 1;
+        UpdatePitch(pitch);
+        //}
     }
 
     public void OnPitchSliderChange()
@@ -261,11 +262,11 @@ public class TextToSpeechDemo : MonoBehaviour
 
     private void UpdateSpeechRateSetting()
     {
-        if (speechRateSlider != null)
-        {
-            float speechRate = speechRateSlider.value;
-            UpdateSpeechRate(speechRate);
-        }
+        //if (speechRateSlider != null)
+        //{
+        float speechRate = 1;
+        UpdateSpeechRate(speechRate);
+        //}
     }
 
     public void OnVolumeSliderChange()
@@ -276,11 +277,11 @@ public class TextToSpeechDemo : MonoBehaviour
 
     private void UpdateVolumeSetting()
     {
-        if (volumeSlider != null)
-        {
-            int volume = (int)volumeSlider.value;
-            UpdateVolume(volume);
-        }
+        //if (volumeSlider != null)
+        //{
+        int volume = 15;
+        UpdateVolume(volume);
+        //}
     }
 
     private void OnInit(int status)
@@ -292,7 +293,7 @@ public class TextToSpeechDemo : MonoBehaviour
 
                 if (status == 1)
                 {
-                    UpdateStatus("init speech service successful!");
+                    //UpdateStatus("init speech service successful!");
 
                     //get available locale on android device
                     //textToSpeechPlugin.GetAvailableLocale();
@@ -306,7 +307,7 @@ public class TextToSpeechDemo : MonoBehaviour
                 }
                 else
                 {
-                    UpdateStatus("init speech service failed!");
+                    //UpdateStatus("init speech service failed!");
 
                     CancelInvoke("WaitingMode");
                     Invoke("WaitingMode", waitingInterval);
@@ -335,12 +336,12 @@ public class TextToSpeechDemo : MonoBehaviour
         dispatcher.InvokeAction(
             () =>
             {
-                UpdateStatus("Start Speech...");
+                //UpdateStatus("Start Speech...");
                 Debug.Log(TAG + "OnStartSpeech utteranceId: " + utteranceId);
 
                 if (IsSpeaking())
                 {
-                    UpdateStatus("speaking...");
+                    //UpdateStatus("speaking...");
                 }
             }
         );
@@ -351,7 +352,7 @@ public class TextToSpeechDemo : MonoBehaviour
         dispatcher.InvokeAction(
             () =>
             {
-                UpdateStatus("Done Speech...");
+                //UpdateStatus("Done Speech...");
                 Debug.Log(TAG + "OnDoneSpeech utteranceId: " + utteranceId);
 
                 CancelInvoke("WaitingMode");
@@ -365,7 +366,7 @@ public class TextToSpeechDemo : MonoBehaviour
         dispatcher.InvokeAction(
             () =>
             {
-                UpdateStatus("Error Speech...");
+                //UpdateStatus("Error Speech...");
 
                 CancelInvoke("WaitingMode");
                 Invoke("WaitingMode", waitingInterval);
