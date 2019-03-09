@@ -78,9 +78,8 @@ public class ApiAiModule : MonoBehaviour
             var aiResponse = e.Response;
             if (aiResponse != null)
             {
-                Debug.Log(aiResponse.Result.ResolvedQuery);
                 var outText = aiResponse.Result.Fulfillment.Speech;
-                Debug.Log(outText);
+
                 t.SpeakOut(outText);
 
             }

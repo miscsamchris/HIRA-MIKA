@@ -13,8 +13,9 @@ public class TouchManager : MonoBehaviour {
     void Update () {
         if (Input.GetMouseButton(0) && Input.touches[0].phase == TouchPhase.Began && flag == false)
         {
-            flag = true;
             VoidAR.GetInstance().startMarkerlessTracking();
+            flag = true;
+
         }
         if (Input.GetMouseButton(0) && Input.touches[0].phase == TouchPhase.Began && flag)
         {
@@ -22,8 +23,9 @@ public class TouchManager : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            flag = false;
             VoidAR.GetInstance().resetMarkerless();
+            flag = false;
+
         }
     }
 }
