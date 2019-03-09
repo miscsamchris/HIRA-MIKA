@@ -22,14 +22,14 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] 3D Model Search
  - [X] MQTT Setup
  - [X] Animation of the Heart
- - [ ] Augmented Reality Application for Attendees
+ - [X] Augmented Reality Application for Attendees
  - [X] Hardware Integration
  - [ ] Augmented Reality Application for Kin
- - [ ] Chatbot Creation
- - [ ] REST API Setup
- - [ ] Web Scraper Setup
- - [ ] Video Streaming Setup
- - [ ] Presentation Updation
+	 - [ ] Chatbot Creation
+	 - [ ] REST API Setup
+	 - [ ] Web Scraper Setup
+	 - [ ] Video Streaming Setup
+	 - [ ] Presentation Updation
  - [ ] ML / Analytics ????????
  
 
