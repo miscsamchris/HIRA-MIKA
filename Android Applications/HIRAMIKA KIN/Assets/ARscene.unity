@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212535697}
-  - component: {fileID: 1212535696}
+  - component: {fileID: 1212535698}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -187,17 +187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1212535696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1212535695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c746e54b0ea0704f8d4dac55ba1063d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1212535697
 Transform:
   m_ObjectHideFlags: 0
@@ -212,6 +201,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1212535698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1212535695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9618542437ef8074ca9bbb45b1a13a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1556372613
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +303,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: d7ad44fd94e74634cbd7bda759c96dc3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: d7ad44fd94e74634cbd7bda759c96dc3, type: 3}
       propertyPath: m_LocalRotation.z
@@ -311,7 +311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: d7ad44fd94e74634cbd7bda759c96dc3, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: d7ad44fd94e74634cbd7bda759c96dc3, type: 3}
       propertyPath: m_RootOrder
@@ -327,7 +327,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400122, guid: d7ad44fd94e74634cbd7bda759c96dc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 13700002, guid: d7ad44fd94e74634cbd7bda759c96dc3, type: 3}
       propertyPath: m_Materials.Array.data[0]

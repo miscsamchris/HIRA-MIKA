@@ -9,7 +9,8 @@ from flask import Flask,request,redirect,jsonify
 app = Flask(__name__)
 import sqlite3
 from sqlite3 import Error
- 
+from bs4 import BeautifulSoup
+import requests
  
 def create_connection(db_file):
     try:
@@ -195,6 +196,16 @@ def dbinfo(bedno):
         records=record
     db.close()
     return jsonify(dict(zip(["bedno","name","age","sex","diag","lam","lan","bp","hb","temp"],records)))    
+@app.route('/diseaseinfo/<string:topic>/')
+def scraperdisease(topic):
+    link="https://www.google.co.in/search?q="
+    link+=topic
+    request=requests.get(link)
+    bs=BeautifulSoup(request.content,"html.parser")
+    s=bs.find_all("div")
+    nbs=BeautifulSoup(str(s[22]),"html.parser")
+    s=nbs.find_all("div")
+    return str(s[10])
 if __name__ == '__main__':
     create_connection("database.db")
     app.run(debug=True, host='10.177.7.168', port="5000")
