@@ -24,13 +24,13 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] Animation of the Heart
  - [X] Augmented Reality Application for Attendees
  - [X] Hardware Integration
- - [ ] Augmented Reality Application for Kin
+ - [X] Augmented Reality Application for Kin
 	 - [X] Chatbot Creation
 	 - [X] REST API Setup
 	 - [X] Web Scraper Setup
 	 - [ ] ~Video Streaming Setup~
 	 - [ ] Presentation Updation
  - [ ] ~ML / Analytics ????????~
- 
+![Yayyyyyy](https://thumbs.gfycat.com/ThirdPleasedCrocodile-max-1mb.gif "Almost There")
 
 
