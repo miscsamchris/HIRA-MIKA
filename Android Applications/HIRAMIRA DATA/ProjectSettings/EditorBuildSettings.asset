@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Splash.unity
     guid: bf6bdeed8daf09a40ab2286ed9aeed19
+  - enabled: 1
+    path: Assets/ARscene.unity
+    guid: b5815e6f6167daf41ba143ff9889bf4c
+  - enabled: 1
+    path: Assets/DataEntry.unity
+    guid: bd09b8513a1c5814db5459e3c56ecab9
   m_configObjects: {}
