@@ -23,7 +23,7 @@ The main objective of the project is to provide a digital record of the medicati
  - [X] MQTT Setup
  - [X] Animation of the Heart
  - [ ] Augmented Reality Application for Attendees
- - [ ] Hardware Integration
+ - [X] Hardware Integration
  - [ ] Augmented Reality Application for Kin
  - [ ] Chatbot Creation
  - [ ] REST API Setup
